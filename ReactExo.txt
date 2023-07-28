@@ -1,0 +1,126 @@
+1). Modifiez le projet précédent pour ajouter un deuxième champ texte pour le prénom. L'application doit afficher les deux champs texte et les réafficher après 'Bonjour'.
+
+import React, { useState } from 'react';
+
+const ControlledInput = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const handleFirstNameChange = (event) => {
+    setFirstName(event.target.value);
+  };
+
+  const handleLastNameChange = (event) => {
+    setLastName(event.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={firstName} onChange={handleFirstNameChange} placeholder="Prénom" />
+      <input type="text" value={lastName} onChange={handleLastNameChange} placeholder="Nom" />
+      <p>Bonjour, {firstName} {lastName} !</p>
+    </div>
+  );
+};
+
+export default ControlledInput;
+
+----------------------------------------------------------------
+
+2). Réalisez une application qui affiche un compteur.
+
+La valeur du compteur doit être stockée dans une variable (créée avec useState()).
+
+Un bouton permet d'augmenter la valeur du compteur.
+
+import React, { useState } from 'react';
+import './App.css';
+
+const App = () => {
+  const [count, setCount] = useState(0);
+
+  const incrementCounter = () => {
+    setCount(count + 1);
+  };
+
+  const decrementCounter = () => {
+    setCount(count - 1);
+  };
+
+  return (
+    <div className="App">
+      <h1>Compteur</h1>
+      <button onClick={decrementCounter}>-</button>
+      <span>{count}</span>
+      <button onClick={incrementCounter}>+</button>
+    </div>
+  );
+};
+
+export default App;
+
+----------------------------------------------------------------
+
+3). Réalisez une application permettant d'afficher une liste d'éléments.
+
+Votre liste de courses sera stockée (mais pas sauvegardée) dans un state qui contiendra un tableau.
+
+Un champ texte permettra d'ajouter un élément dans la liste
+
+import React, { useState } from 'react';
+import './App.css';
+
+const App = () => {
+  const [item, setItem] = useState('');
+  const [shoppingList, setShoppingList] = useState([]);
+
+  const handleChange = (event) => {
+    setItem(event.target.value);
+  };
+
+  const addItem = () => {
+    if (item.trim() !== '') {
+      setShoppingList([...shoppingList, item]);
+      setItem('');
+    }
+  };
+
+  return (
+    <div className="App">
+      <h1>Ma liste de courses</h1>
+      <div className="input-container">
+        <input type="text" value={item} onChange={handleChange} placeholder="Nouvel élément" />
+        <button onClick={addItem}>Ajouter</button>
+      </div>
+      <div className="shopping-list">
+        {shoppingList.map((item, index) => (
+          <div key={index} className="shopping-list-item">
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default App;
+--------------------------------------------------------------------------
+
+exo 3 partie css : 
+
+.App {
+  padding: 20px;
+}
+
+.shopping-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.shopping-list-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}

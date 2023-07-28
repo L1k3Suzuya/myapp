@@ -1,0 +1,16 @@
+.App {
+  padding: 20px;
+}
+
+.shopping-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.shopping-list-item {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
